@@ -13,11 +13,19 @@
 					<label for="field1">Label 1</label>
 					<input type="text" id="field1" name="field1">
 				</div>
+
+				<div>
+					<label for="field2">No animation</label>
+					<input type="text" id="field2" name="field2">
+				</div>
 			</fieldset>
 		</form>
 		<script>
 			$(function() {
 				$("#field1").placeLabel();
+				$("#field2").placeLabel({
+					animation: false,
+				});
 			});
 		</script>
 
