@@ -10,10 +10,7 @@
 
         //plugin constructor
         var settings = $.extend({}, defaults, options);
-        var animationDuration = settings.animationDuration;
 
-
-        var animationDuration = 300;
 
         var getInputByLabel = function(label) {
             return $("[id='" + label.attr('for')+"']");
@@ -23,19 +20,28 @@
         }
 
         var placeLabelInField = function(label) {
-        $input = getInputByLabel(label);
-        label.animate({
-           top: $input.offset().top - label.offset().top,
-           left: $input.offset().left - label.offset().left,
-        }, animationDuration, function() {
-            label.css({
-                'text-align': 'left',
-                'color': 'gray',
-                'position': 'relative',
-                'z-index': '1',
-            });
-        });
-        return label;
+            $input = getInputByLabel(label);
+            var offset = {
+                    top: $input.offset().top - label.offset().top,
+                    left: $input.offset().left - label.offset().left,
+                },
+                css = {
+                    'text-align': 'left',
+                    'color': 'gray',
+                    'position': 'relative',
+                    'z-index': '1',
+                };
+                
+            if (settings.animation) {
+                label.animate( offset, settings.animationDuration, function() {
+                   label.css(css);
+                });
+            } else {
+                var css = $.extend({}, css, offset)
+                label.css(css);
+
+            }
+            return label;
         }
 
         var resetLabelOffset = function(label) {
@@ -43,7 +49,7 @@
                 css = {textAlign: 'right', color: '#66afe9', };
 
             if (settings.animation) {
-                label.animate( offset, animationDuration, function() {
+                label.animate( offset, settings.animationDuration, function() {
                    label.css(css);
                 });
             } else {
