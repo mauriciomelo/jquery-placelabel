@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>jQuery placeLabel</title>
+		<script src="http://ajax.googleapis.com/ajax/libs/jquery/2.0.0/jquery.min.js"></script>
+		<script src="../src/jquery.placelabel.js"></script>
+	</head>
+	<body>
+
+		<form>
+			<fieldset>
+				<div>
+					<label for="field1">Label 1</label>
+					<input type="text" id="field1" name="field1">
+				</div>
+			</fieldset>
+		</form>
+		<script>
+			$(function() {
+				$("#field1").placeLabel();
+			});
+		</script>
+
+	</body>
+
+</html>
